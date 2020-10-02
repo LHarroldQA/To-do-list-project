@@ -21,7 +21,7 @@ public class UserDTO {
 	private Long id;
 	private String firstName;
 	private String surname;
-	private Integer age;
+	private Integer userAge;
 	private List<TaskDTO> tasks;
 
 }
