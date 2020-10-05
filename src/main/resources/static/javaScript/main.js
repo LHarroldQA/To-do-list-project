@@ -56,7 +56,7 @@ function createTableBody(table,taskData){
         let viewButton = document.createElement("a");
         viewButton.className="btn btn-info";
         viewButton.innerHTML="View";
-        viewButton.href="record.html?id=" + taskRecord.id;
+        viewButton.href="singleTask.html?id=" + taskRecord.id;
         newCell.appendChild(viewButton);
 
         let delCell = row.insertCell();
