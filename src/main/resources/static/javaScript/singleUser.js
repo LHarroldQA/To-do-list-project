@@ -32,3 +32,40 @@ function getSingleUser(id){
         console.log('Fetch Error :-S', err);
     });
 }
+
+document.querySelector("form.userRecord").addEventListener("submit",function(stop){
+    stop.preventDefault();
+
+    let formElements = document.querySelector("form.userRecord").elements;
+    let id = formElements["userId"].value;
+    let firstName = formElements["userFirstName"].value;
+    let surname = formElements["userSurname"].value;
+    let age = formElements["userAge"].value;
+    updateTask(id,firstName,surname,age);
+})
+
+function updateTask(id,firstName,surname,age){
+
+    let updateId = parseInt(id);
+    let updateAge = parseInt(age);
+
+    fetch("http://localhost:8080/user/update/"+id, {
+        method: 'PUT',
+        headers: {
+          "Content-type": "application/json"
+        },
+        body:json = JSON.stringify ({
+            "id": updateId,
+            "firstName":firstName,
+            "surname":surname,
+            "userAge": updateAge
+        })
+      })
+      .then(json)
+      .then(function (data) {
+        console.log('Request succeeded with JSON response', data);
+      })
+      .catch(function (error) {
+        console.log('Request failed', error);
+      });
+}

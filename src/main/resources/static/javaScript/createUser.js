@@ -20,7 +20,7 @@ function createTask(firstName,surname,age){
         body:json = JSON.stringify ({
             "firstName": firstName,
             "surname": surname,
-            "userAge": age
+            "userAge": createAge
         })
       })
       .then(json)

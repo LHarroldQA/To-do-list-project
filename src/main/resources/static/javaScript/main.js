@@ -16,6 +16,7 @@ fetch('http://localhost:8080/task/read')
 
         createTableHead(table,data);
         createTableBody(table,taskData);
+
       });
     }
   )
@@ -66,4 +67,20 @@ function createTableBody(table,taskData){
         delButton.innerHTML="Delete";
         delCell.appendChild(delButton);
     }
+}
+
+function deleteTask(id) {
+
+  deleteId = parseInt(id);
+
+  fetch('http://localhost:8080/task/delete/'+deleteId, {
+    method: 'DELETE'
+  })
+    .then(json)
+    .then(function (data) {
+      console.log('Request succeeded with JSON response', data);
+    })
+    .catch(function (error) {
+      console.log('Request failed', error);
+    });
 }
