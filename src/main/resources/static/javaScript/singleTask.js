@@ -54,10 +54,7 @@ function updateTask(id,category,description){
         body:json = JSON.stringify ({
             "id": updateId,
             "category": category,
-            "description": description,
-            "user": {
-                "id": 1
-            }
+            "description": description
         })
       })
       .then(json)
