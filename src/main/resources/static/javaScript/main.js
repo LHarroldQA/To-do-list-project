@@ -61,6 +61,7 @@ function createTableBody(table,taskData){
 
         let delCell = row.insertCell();
         let delButton = document.createElement("a");
+        delButton.type="submit";
         delButton.className="btn btn-danger";
         delButton.innerHTML="Delete";
         delCell.appendChild(delButton);

@@ -56,7 +56,7 @@ function createTableBody(table,userData){
         let viewButton = document.createElement("a");
         viewButton.className="btn btn-info";
         viewButton.innerHTML="View";
-        viewButton.href="user.html?id=" + userRecord.id;
+        viewButton.href="singleUser.html?id=" + userRecord.id;
         newCell.appendChild(viewButton);
 
         let delCell = row.insertCell();
