@@ -64,5 +64,31 @@ function createTableBody(table,userData){
         delButton.className="btn btn-danger";
         delButton.innerHTML="Delete";
         delCell.appendChild(delButton);
+
+        delButton.onclick = function(){
+          delUser(userRecord.id);
+          window.location.reload();
+        };
     }
+}
+
+function delUser(id){
+  fetch("http://localhost:8080/user/delete/"+id, {
+      method: 'delete',
+      headers: {
+        "Content-type": "application/json"
+      },
+    })
+    .then(function (data) {
+      console.log('Request succeeded with JSON response', data);
+      let delAlert = document.createElement('div');
+      let getDiv = document.querySelector('div.container-fluid');
+      delAlert.className ="alert alert-danger"
+      delAlert.innerHTML ="User Deleted";
+      getDiv.appendChild(delAlert);
+      
+    })
+    .catch(function (error) {
+      console.log('Request failed', error);
+    });
 }
