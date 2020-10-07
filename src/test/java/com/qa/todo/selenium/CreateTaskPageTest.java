@@ -5,11 +5,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class IndexPageTests {
+public class CreateTaskPageTest {
 	
 	public static WebDriver driver;
 	
@@ -19,18 +21,23 @@ public class IndexPageTests {
         driver = new ChromeDriver();
         driver.manage().window().setSize(new Dimension(1366, 768));
 	}
-
+	
 	@Test
-	public void pageTitleTest() {
+	public void createTaskPageTest() {
+		WebElement createButton;
+		
 		driver.get("http://127.0.0.1:5500/html/index.html");
 		
+		createButton = driver.findElement(By.xpath("/html/body/div[2]/a"));
+		createButton.click();
+		
 		String title = driver.getTitle();
-		assertEquals("To-do list project",title);
+		assertEquals("Create Task",title);
 	}
 	
 	@AfterClass
 	public static void teardown() {
 		driver.close();
 	}
-	
+
 }
