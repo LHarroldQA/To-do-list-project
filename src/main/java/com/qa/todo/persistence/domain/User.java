@@ -50,6 +50,8 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Task> tasks;
 	
+	
+	
 	public User(String firstName,String surname,Integer userAge) {
 		super();
 		this.firstName = firstName;
