@@ -40,25 +40,25 @@ public class UserController {
 	
 	//read all
 	@GetMapping("/read")
-	public ResponseEntity<List<UserDTO>> getAllBands(){
+	public ResponseEntity<List<UserDTO>> getAllUsers(){
 		return ResponseEntity.ok(this.service.readAll());
 	}
 	
 	//read one
 	@GetMapping("/read/{id}")
-	public ResponseEntity<UserDTO> getBandById(@PathVariable Long id){
+	public ResponseEntity<UserDTO> getUserById(@PathVariable Long id){
 		return ResponseEntity.ok(this.service.readOne(id));
 	}
 	
 	//update
 	@PutMapping("/update/{id}")
-	ResponseEntity<UserDTO> updateBandById(@PathVariable Long id,@RequestBody UserDTO userDTO){
+	ResponseEntity<UserDTO> updateUserById(@PathVariable Long id,@RequestBody UserDTO userDTO){
 		return new ResponseEntity<>(this.service.update(userDTO, id),HttpStatus.ACCEPTED);
 	}
 	
 	//delete
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<UserDTO> deleteGuitarist(@PathVariable Long id){
+	public ResponseEntity<UserDTO> deleteUser(@PathVariable Long id){
 		return this.service.delete(id)? new ResponseEntity<>(HttpStatus.NO_CONTENT): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
