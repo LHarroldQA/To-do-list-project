@@ -2,6 +2,8 @@ package com.qa.todo.selenium;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -41,13 +43,22 @@ public class CreateUserPageTest {
 	
 	@Test
 	public void createUserTest() {
+		List<WebElement> users;
+		WebElement createPageButton;
 		WebElement userFirstNameBox;
 		WebElement userSurnameBox;
 		WebElement userAgeBox;
 		WebElement createButton;
 		WebElement readAllUsersButton;
 		
-		driver.get("http://127.0.0.1:5500/html/createUser.html");
+		driver.get("http://127.0.0.1:5500/html/users.html");
+		
+		users = driver.findElements(By.xpath("/html/body/div[2]/table/thead/*"));
+		createPageButton = driver.findElement(By.xpath("/html/body/div[2]/a"));
+		
+		int originalUsersNumber = users.toArray().length;
+		System.out.println(originalUsersNumber);
+		createPageButton.click();
 		
 		userFirstNameBox = driver.findElement(By.xpath("//*[@id=\"userFirstName\"]"));
 		userSurnameBox = driver.findElement(By.xpath("//*[@id=\"userSurname\"]"));
@@ -60,6 +71,10 @@ public class CreateUserPageTest {
 		userAgeBox.sendKeys("30");
 		createButton.click();
 		readAllUsersButton.click();
+		
+		users = driver.findElements(By.xpath("/html/body/div[2]/table/thead/*"));
+		int newUsersNumber = users.toArray().length;
+		System.out.println(newUsersNumber);
 		
 		assertEquals("Users",driver.getTitle());
 	}

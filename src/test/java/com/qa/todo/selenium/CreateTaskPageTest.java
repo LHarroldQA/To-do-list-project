@@ -2,6 +2,8 @@ package com.qa.todo.selenium;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,13 +39,22 @@ public class CreateTaskPageTest {
 	
 	@Test
 	public void createTaskTest() {
+		List<WebElement> tasks;
+		WebElement createPageButton;
 		WebElement taskCategoryBox;
 		WebElement taskDescBox;
 		WebElement userIdBox;
 		WebElement createButton;
 		WebElement readAllTasksButton;
 		
-		driver.get("http://127.0.0.1:5500/html/createTask.html");
+		driver.get("http://127.0.0.1:5500/html/index.html");
+		
+		tasks = driver.findElements(By.xpath("/html/body/div[2]/table/thead/*"));
+		createPageButton = driver.findElement(By.xpath("/html/body/div[2]/a"));
+		
+		int originalTasksNumber = tasks.toArray().length;
+		System.out.println(originalTasksNumber);
+		createPageButton.click();
 		
 		taskCategoryBox = driver.findElement(By.xpath("//*[@id=\"taskCategory\"]"));
 		taskDescBox = driver.findElement(By.xpath("//*[@id=\"taskDesc\"]"));
@@ -53,11 +64,14 @@ public class CreateTaskPageTest {
 		
 		taskCategoryBox.sendKeys("School");
 		taskDescBox.sendKeys("History homework");
-		userIdBox.sendKeys("1");
+		userIdBox.sendKeys("2");
 		createButton.click();
 		readAllTasksButton.click();
+		tasks = driver.findElements(By.xpath("/html/body/div[2]/table/thead/*"));
+		int newTasksNumber = tasks.toArray().length;
+		System.out.println(newTasksNumber);
 		
-		assertEquals("To-do list project",driver.getTitle());
+		assertEquals(originalTasksNumber + 1, newTasksNumber);
 	}
 	
 	@AfterClass
