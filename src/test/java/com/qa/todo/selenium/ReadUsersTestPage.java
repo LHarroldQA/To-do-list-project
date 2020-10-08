@@ -35,8 +35,6 @@ public class ReadUsersTestPage {
 		assertEquals("Users",title);
 	}
 	
-	
-	
 	@AfterClass
 	public static void teardown() {
 		driver.close();

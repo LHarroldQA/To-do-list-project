@@ -2,6 +2,8 @@ package com.qa.todo.selenium;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,6 +35,32 @@ public class CreateTaskPageTest {
 		
 		String title = driver.getTitle();
 		assertEquals("Create Task",title);
+	}
+	
+	@Test
+	public void createTaskTest() {
+		WebElement taskCategoryBox;
+		WebElement taskDescBox;
+		WebElement userIdBox;
+		WebElement createButton;
+		WebElement readAllTasksButton;
+		
+		driver.get("http://127.0.0.1:5500/html/createTask.html");
+		
+//		WebDriverWait wait = new WebDriverWait(driver, 200);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"taskCategory\"]")));
+		
+		taskCategoryBox = driver.findElement(By.xpath("//*[@id=\"taskCategory\"]"));
+		taskDescBox = driver.findElement(By.xpath("//*[@id=\"taskDesc\"]"));
+		userIdBox = driver.findElement(By.xpath("//*[@id=\"userId\"]"));
+		createButton = driver.findElement(By.xpath("/html/body/div/form/button"));
+		readAllTasksButton = driver.findElement(By.xpath("/html/body/div/ul/li[1]/a"));
+		
+		taskCategoryBox.sendKeys("School");
+		taskDescBox.sendKeys("History homework");
+		userIdBox.sendKeys("1");
+		createButton.click();
+		readAllTasksButton.click();		
 	}
 	
 	@AfterClass

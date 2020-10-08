@@ -24,6 +24,8 @@ public class ReadSingleUserTest {
         driver.manage().window().setSize(new Dimension(1366, 768));
 	}
 	
+	
+	//only works with spring running
 	@Test
 	public void readUserNavTest() {
 		WebElement usersPageNav;

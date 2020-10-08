@@ -24,8 +24,9 @@ public class ReadSingleTaskTest {
         driver.manage().window().setSize(new Dimension(1366, 768));
 	}
 	
+	//only works with spring running
 	@Test
-	public void readUserNavTest() {
+	public void readTaskNavTest() {
 		WebElement viewButton;
 		
 		driver.get("http://127.0.0.1:5500/html/index.html");
