@@ -2,8 +2,6 @@ package com.qa.todo.selenium;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -47,9 +45,6 @@ public class CreateTaskPageTest {
 		
 		driver.get("http://127.0.0.1:5500/html/createTask.html");
 		
-//		WebDriverWait wait = new WebDriverWait(driver, 200);
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"taskCategory\"]")));
-		
 		taskCategoryBox = driver.findElement(By.xpath("//*[@id=\"taskCategory\"]"));
 		taskDescBox = driver.findElement(By.xpath("//*[@id=\"taskDesc\"]"));
 		userIdBox = driver.findElement(By.xpath("//*[@id=\"userId\"]"));
@@ -60,7 +55,9 @@ public class CreateTaskPageTest {
 		taskDescBox.sendKeys("History homework");
 		userIdBox.sendKeys("1");
 		createButton.click();
-		readAllTasksButton.click();		
+		readAllTasksButton.click();
+		
+		assertEquals("To-do list project",driver.getTitle());
 	}
 	
 	@AfterClass

@@ -37,7 +37,31 @@ public class CreateUserPageTest {
 		
 		String title = driver.getTitle();
 		assertEquals("Create User",title);
+	}
+	
+	@Test
+	public void createUserTest() {
+		WebElement userFirstNameBox;
+		WebElement userSurnameBox;
+		WebElement userAgeBox;
+		WebElement createButton;
+		WebElement readAllUsersButton;
 		
+		driver.get("http://127.0.0.1:5500/html/createUser.html");
+		
+		userFirstNameBox = driver.findElement(By.xpath("//*[@id=\"userFirstName\"]"));
+		userSurnameBox = driver.findElement(By.xpath("//*[@id=\"userSurname\"]"));
+		userAgeBox = driver.findElement(By.xpath("//*[@id=\"userAge\"]"));
+		createButton = driver.findElement(By.xpath("/html/body/div/form/button"));
+		readAllUsersButton = driver.findElement(By.xpath("/html/body/div/ul/li[2]/a"));
+		
+		userFirstNameBox.sendKeys("Jonny");
+		userSurnameBox.sendKeys("Bravo");
+		userAgeBox.sendKeys("30");
+		createButton.click();
+		readAllUsersButton.click();
+		
+		assertEquals("Users",driver.getTitle());
 	}
 	
 	

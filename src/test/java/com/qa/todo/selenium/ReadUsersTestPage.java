@@ -2,6 +2,8 @@ package com.qa.todo.selenium;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,6 +35,26 @@ public class ReadUsersTestPage {
 		
 		String title = driver.getTitle();
 		assertEquals("Users",title);
+	}
+	
+	@Test
+	public void userDeleteTest() {
+		List<WebElement> users;
+		WebElement deleteButton;
+		
+		
+		driver.get("http://127.0.0.1:5500/html/users.html");
+		
+		users = driver.findElements(By.xpath("/html/body/div[2]/table/thead/*"));
+		deleteButton = driver.findElement(By.xpath("/html/body/div[2]/table/thead/tr[2]/td[7]/a"));
+		
+		int originalSize = users.toArray().length;
+		
+		deleteButton.click();
+		users = driver.findElements(By.xpath("/html/body/div[2]/table/thead/*"));
+		int afterDeleteSize = users.toArray().length;
+		
+		assertEquals(originalSize - 1,afterDeleteSize);
 	}
 	
 	@AfterClass
