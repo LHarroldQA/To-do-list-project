@@ -56,6 +56,9 @@ public class UserService {
 	
 	//delete
 	public boolean delete(Long id) {
+		if(!this.repo.existsById(id)) {
+			throw new UserNotFoundException();
+		}
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}
