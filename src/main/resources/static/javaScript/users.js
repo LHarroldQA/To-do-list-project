@@ -85,6 +85,7 @@ function createTableBody(table,userData){
 
         delButton.onclick = function(){
           delUser(userRecord.id);
+          window.setTimeout(500);
           window.location.reload();
         };
     }

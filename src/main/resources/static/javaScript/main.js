@@ -69,7 +69,7 @@ function createTableBody(table,taskData){
 
         delButton.onclick = function(){
           delTask(taskRecord.id);
-          console.log("Task deleted");
+          window.setTimeout(500);
           window.location.reload();
         };
     }
