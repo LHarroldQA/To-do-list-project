@@ -45,12 +45,30 @@ fetch('http://localhost:8080/user/read')
 
 function createTableBody(table,userData){
     for(let userRecord of userData){
+      console.log(userRecord);
         let row = table.insertRow();
         for(let values in userRecord){
-            console.log(userRecord[values]);
+          console.log(userRecord[values]);
+          if(values === "tasks"){
+            let cell = row.insertCell();
+            for(taskRecord of userRecord[values]){
+              console.log("Task record",taskRecord);
+              for(taskValues in taskRecord){
+                if(taskValues === "id"){
+                console.log("Task values",taskRecord[taskValues]);
+                let taskLink = document.createElement('a');
+                taskLink.href="singleTask.html?id="+taskRecord[taskValues];
+                let text = document.createTextNode(taskRecord[taskValues] + ";\t");
+                taskLink.appendChild(text);
+                cell.appendChild(taskLink);
+                }
+              }
+            }
+          } else {
             let cell = row.insertCell();
             let text = document.createTextNode(userRecord[values]);
             cell.appendChild(text);
+          }
         }
         let newCell = row.insertCell();
         let viewButton = document.createElement("a");
