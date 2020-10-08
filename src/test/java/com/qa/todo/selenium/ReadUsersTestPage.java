@@ -12,6 +12,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ReadUsersTestPage {
 	
@@ -19,8 +20,10 @@ public class ReadUsersTestPage {
 	
 	@BeforeClass
 	public static void init() {
+		ChromeOptions options = new ChromeOptions();
+		options.setHeadless(true);
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Liam\\Documents\\workspace-spring-tool-suite-4-4.8.0.RELEASE\\To-do-project\\src\\test\\resources\\drivers\\chromedriver1.exe");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1366, 768));
 	}
 	
